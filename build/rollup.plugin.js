@@ -11,12 +11,12 @@ const plugin = mode => {
     const plugins = dev
 
     if(mode === 'build') plugins.push(uglify(), progress({clearLine: false}))
+    
     else plugins.push(
         html({
             template: 'public/index.html',
             filename: 'index.html',
         }),
-        sourcemaps(),
         serve({
             open: true,
             openPage: '/index.html',
@@ -27,6 +27,8 @@ const plugin = mode => {
         livereload(
             {watch: ['dist', 'src']}
         ))
+
+    if(mode === 'start') plugins.push(sourcemaps())
 
     return plugins
 }
