@@ -10,7 +10,7 @@ const plugin = mode => {
 
     const plugins = dev
 
-    if(mode === 'build') plugins.push(uglify(), progress({clearLine: false}))
+    if(mode === 'build') plugins.push(uglify(), progress({clearLine: false})),plugins.shift()
     
     else if(mode === 'start') plugins.push(
         sourcemaps(),

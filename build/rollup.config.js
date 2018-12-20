@@ -8,7 +8,7 @@ const config = {
         file: ENV === 'build' ? `dist/${name}.min.js` : `dist/${name}.js`,
         format: 'umd',
     },
-    plugins: plugin(ENV, TYPE),
+    plugins: plugin(ENV),
     sourceMap: ENV === 'start',
     moduleName: name
 }
