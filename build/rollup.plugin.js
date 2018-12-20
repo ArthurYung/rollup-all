@@ -12,7 +12,8 @@ const plugin = mode => {
 
     if(mode === 'build') plugins.push(uglify(), progress({clearLine: false}))
     
-    else plugins.push(
+    else if(mode === 'start') plugins.push(
+        sourcemaps(),
         html({
             template: 'public/index.html',
             filename: 'index.html',
@@ -28,8 +29,8 @@ const plugin = mode => {
             {watch: ['dist', 'src']}
         ))
 
-    if(mode === 'start') plugins.push(sourcemaps())
-
+    else plugins.push(progress({clearLine: false}))
+    
     return plugins
 }
 
