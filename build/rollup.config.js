@@ -5,7 +5,7 @@ const TYPE = process.env.NODE_ENV
 const config = {
     input: TYPE === 'ts' ? 'src/index.ts' : 'src/index.js',
     output:{
-        file: ENV === 'build' ? `dist/${name}.min.js` : `dist/${name}.js`,
+        file: ENV === 'env-build' ? `dist/${name}.min.js` : `dist/${name}.js`,
         format: 'umd',
     },
     plugins: plugin(ENV),
