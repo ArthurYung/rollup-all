@@ -31,12 +31,12 @@ const plugin = mode => {
                 {watch: ['dist', 'src']}
         ))
         
-        plugins.unshift(clear('dist'))
+        plugins.unshift(clear({targets:['dist']}))
 
     } else {
         plugins.push(progress({clearLine: false}))
         
-        plugins.unshift(clear('dist'))
+        plugins.unshift(clear({targets:['dist']}))
     }
     
     return plugins
