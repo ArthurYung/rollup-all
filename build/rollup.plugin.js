@@ -13,25 +13,31 @@ const plugin = mode => {
 
     if(mode === 'env-build') plugins.push(uglify(),progress({clearLine: false}))
     
-    else if(mode === 'start') plugins.push(
-        clear('dist'),
-        sourcemaps(),
-        html({
-            template: 'public/index.html',
-            filename: 'index.html',
-        }),
-        serve({
-            open: true,
-            openPage: '/index.html',
-            contentBase: ['dist'],
-            host: 'localhost',
-            port: 10001,
-        }),
-        livereload(
-            {watch: ['dist', 'src']}
+    else if(mode === 'start'){ 
+        plugins.push(
+            sourcemaps(),
+            html({
+                template: 'public/index.html',
+                filename: 'index.html',
+            }),
+            serve({
+                open: true,
+                openPage: '/index.html',
+                contentBase: ['dist'],
+                host: 'localhost',
+                port: 10001,
+            }),
+            livereload(
+                {watch: ['dist', 'src']}
         ))
+        
+        plugins.unshift(clear('dist'))
 
-    else plugins.push(progress({clearLine: false}), clear('dist'))
+    } else {
+        plugins.push(progress({clearLine: false}))
+        
+        plugins.unshift(clear('dist'))
+    }
     
     return plugins
 }
