@@ -31,7 +31,7 @@ const baseConfig = {
 							'bb >= 10'
 						]
 				})
-			],
+			], 
 			minimize: ENV !== 'start'
     }),
     filesize() 
