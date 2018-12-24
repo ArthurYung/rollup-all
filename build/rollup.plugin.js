@@ -1,4 +1,4 @@
-import { uglify } from "rollup-plugin-uglify";
+import {uglify} from "rollup-plugin-uglify";
 import sourcemaps from 'rollup-plugin-sourcemaps'
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
@@ -9,37 +9,45 @@ import clear from 'rollup-plugin-clear'
 
 const plugin = mode => {
 
-    const plugins = dev
+  const plugins = dev
 
-    if(mode === 'env-build') plugins.push(uglify(),progress({clearLine: false}))
-    
-    else if(mode === 'start'){ 
-        plugins.push(
-            sourcemaps(),
-            html({
-                template: 'public/index.html',
-                filename: 'index.html',
-            }),
-            serve({
-                open: true,
-                openPage: '/index.html',
-                contentBase: ['dist'],
-                host: 'localhost',
-                port: 10001,
-            }),
-            livereload(
-                {watch: ['dist', 'src']}
-        ))
-        
-        plugins.unshift(clear({targets:['dist']}))
+  if (mode === 'env-build'){
+    plugins.push(uglify(), progress({
+      clearLine: false
+    }))
+  } else if (mode === 'start') {
+    plugins.push(
+      sourcemaps(),
+      html({
+        template: 'public/index.html',
+        filename: 'index.html',
+      }),
+      serve({
+        open: true,
+        openPage: '/index.html',
+        contentBase: ['dist'],
+        host: 'localhost',
+        port: 10001,
+      }),
+      livereload({
+        watch: ['dist', 'src']
+      }))
 
-    } else {
-        plugins.push(progress({clearLine: false}))
-        
-        plugins.unshift(clear({targets:['dist']}))
-    }
-    
-    return plugins
+    plugins.unshift(clear({
+      targets: ['dist']
+    }))
+
+  } else {
+    plugins.push(progress({
+      clearLine: false
+    }))
+
+    plugins.unshift(clear({
+      targets: ['dist']
+    }))
+  }
+
+  return plugins
 }
 
 export default plugin
