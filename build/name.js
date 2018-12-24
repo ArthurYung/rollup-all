@@ -6,6 +6,5 @@ if(cases.length === 1) CamelCase = cases[0]
 else cases.map( (n, i) => {
     i === 0 ? CamelCase += n : CamelCase += n.replace(/^./, x=>x.toUpperCase())
 })
-CamelCase
 
 export default CamelCase
