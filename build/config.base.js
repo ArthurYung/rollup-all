@@ -34,7 +34,7 @@ const baseConfig = {
 			],
 			minimize: ENV !== 'start'
     }),
-    filesize()
+    filesize() 
 	]
 }
 
